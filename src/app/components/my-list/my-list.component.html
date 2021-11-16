@@ -1,1 +1,15 @@
-<p>my-list works!</p>
+<div class="dashboard">
+  <div class="task-card" *ngFor="let task of tasks | async">
+    <div class="text">
+      <h1 class="task-title">{{ task.title }}</h1>
+      <p class="task-description">{{ task.description }}</p>
+    </div>
+    <div
+      class="update"
+      [routerLink]="['/update', task._id, task.title, task.description]"
+    >
+      Editar
+    </div>
+    <div class="delete" (click)="deleteTask(task._id)">Deletar</div>
+  </div>
+</div>

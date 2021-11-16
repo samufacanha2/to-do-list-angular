@@ -1,1 +1,24 @@
-<p>my-form works!</p>
+<form [formGroup]="formTask" (ngSubmit)="submitForm($event)">
+  <label [ngClass]="{ visible: this.formTask.value.title }">Titulo</label>
+  <input
+    type="text"
+    id="title"
+    placeholder="Digite um titulo"
+    formControlName="title"
+  />
+  <label [ngClass]="{ visible: this.formTask.value.description }"
+    >Descrição</label
+  >
+  <input
+    type="text"
+    id="description"
+    placeholder="Digite uma descrição"
+    formControlName="description"
+  />
+
+  <button *ngIf="!update" (click)="submitForm($event)">Adicionar</button>
+  <div *ngIf="update" class="footer-buttons">
+    <button routerLink="/">Voltar</button>
+    <button (click)="updateForm($event)">Salvar</button>
+  </div>
+</form>

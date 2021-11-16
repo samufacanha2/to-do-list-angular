@@ -6,11 +6,11 @@ import { UpdateComponent } from './pages/update/update.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
-    path: 'update',
+    path: 'update/:id/:title/:description',
     component: UpdateComponent,
   },
 ];
