@@ -9,8 +9,12 @@ export class MyListComponent implements OnInit {
   constructor(private http: HttpClient) {}
   readonly ROOT_URL = 'http://localhost:3330/';
   tasks: any;
+
   getTasks() {
-    this.tasks = this.http.get(this.ROOT_URL + 'get');
+    this.http.get(this.ROOT_URL + 'get').subscribe((data) => {
+      this.tasks = data;
+      console.log(this.tasks);
+    });
   }
 
   ngOnInit(): void {
@@ -18,8 +22,13 @@ export class MyListComponent implements OnInit {
     console.log(this.tasks);
   }
   deleteTask(id: any) {
-    console.log(id);
-    this.http.delete(this.ROOT_URL + 'delete' + '/' + id).subscribe();
-    window.location.reload();
+    this.http.delete(this.ROOT_URL + 'delete' + '/' + id).subscribe(
+      (data) => {
+        this.getTasks();
+      },
+      (err) => {
+        this.getTasks();
+      }
+    );
   }
 }

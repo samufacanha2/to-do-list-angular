@@ -1,15 +1,26 @@
 <div class="dashboard">
-  <div class="task-card" *ngFor="let task of tasks | async">
-    <div class="text">
-      <h1 class="task-title">{{ task.title }}</h1>
-      <p class="task-description">{{ task.description }}</p>
+  <div *ngIf="tasks?.length">
+    <div class="task-card" *ngFor="let task of tasks">
+      <div class="text">
+        <h1 class="task-title">{{ task.title }}</h1>
+        <p class="task-description">{{ task.description }}</p>
+      </div>
+      <div
+        class="update"
+        [routerLink]="['/update', task._id, task.title, task.description]"
+      >
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >edit</mat-icon
+        >
+      </div>
+      <div class="delete" (click)="deleteTask(task._id)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >delete</mat-icon
+        >
+      </div>
     </div>
-    <div
-      class="update"
-      [routerLink]="['/update', task._id, task.title, task.description]"
-    >
-      Editar
-    </div>
-    <div class="delete" (click)="deleteTask(task._id)">Deletar</div>
+  </div>
+  <div *ngIf="!tasks?.length" class="empty-tasks" ng>
+    Registre uma atividade utilizando os campos acima
   </div>
 </div>

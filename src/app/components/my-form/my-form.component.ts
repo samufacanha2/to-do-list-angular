@@ -43,7 +43,7 @@ export class MyFormComponent implements OnInit {
         description: this.description,
       });
     }
-    console.log(this.formTask.value);
+    // console.log(this.formTask.value);
   }
   @Input() update = false;
   submitForm(e: any) {
